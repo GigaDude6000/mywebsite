@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Where I Learn</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* ——— color palette & global reset ——— */
+:root{
+    --bg:#f2f7ff;           /* page background */
+    --card-bg:#ffffff;
+    --border:#dde3ea;
+    --shadow:0 4px 10px rgba(0,0,0,.07);
+    --accent:#7f5af0;       /* fun accent */
+    --radius:16px;
+    --font:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+body{
+    font-family:var(--font);
+    background:
+      radial-gradient(circle at 25% 20%,rgba(255,222,233,.6) 0 10%,transparent 11%) 0 0/110px 110px,
+      radial-gradient(circle at 90% 75%,rgba(197,249,199,.6) 0 8%,transparent 9%) 0 0/180px 180px,
+      var(--bg);
+    color:#222;
+    padding:2.2rem;
+}
+
+/* ——— grid layout ——— */
+.grid{
+    display:grid;
+    gap:1.5rem;
+    grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+    max-width:1200px;margin-inline:auto;
+}
+
+/* ——— cards ——— */
+.card,.big-card{
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:1.7rem 1.9rem;
+    box-shadow:var(--shadow);
+    transition:transform .25s ease, box-shadow .25s ease;
+}
+.card:hover,.big-card:hover{
+    transform:translateY(-6px) scale(1.015);
+    box-shadow:0 10px 18px rgba(0,0,0,.10);
+}
+
+/* big card spans full row */
+.big-card{grid-column:1/-1;}
+
+/* ——— headings ——— */
+h2{
+    position:relative;
+    font-size:1.35rem;
+    letter-spacing:.5px;
+    margin-bottom:.9rem;
+    text-transform:uppercase;
+    padding-bottom:.25rem;
+}
+h2::after{                /* animated underline */
+    content:"";
+    position:absolute;
+    left:0;bottom:-2px;
+    width:0;height:3px;
+    background:linear-gradient(90deg,var(--accent),#ff9f1c,#00b4d8);
+    border-radius:2px;
+    animation:reveal 1.6s cubic-bezier(.25,.8,.4,1) forwards;
+}
+@keyframes reveal{to{width:100%}}
+
+h3{margin:.95rem 0 .45rem;font-size:1.08rem}
+ul{margin:.25rem 0 .95rem 1.2rem}
+li{margin:.3rem 0;line-height:1.45}
+
+/* helpful highlight for code-like bits */
+code{background:#eef;padding:.1rem .35rem;border-radius:4px}
+
+/* ——— emoji helpers ——— */
+.emoji{font-style:normal;margin-right:.3rem}
+
+/* prevent underline animation from replaying each hover */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+}
+</style>
+</head>
+<body>
+
+<div class="grid">
+
+  <!-- BOOKS -->
+  <section class="card">
+    <h2><span class="emoji">📚</span>Books</h2>
+
+    <h3>7 Habits of Highly Effective People</h3>
+    <ul>
+      <li>Understand <em>before</em> trying to be understood (practical listening techniques).</li>
+      <li>Plan the week around <strong>important</strong> matters, not noisy urgencies.</li>
+      <li>Create a personal mission statement to align life with your own values.</li>
+    </ul>
+
+    <h3>1-Page Marketing Plan</h3>
+    <ul><li>Clients are like plants—keep watering them or they’ll wither away!</li></ul>
+
+    <h3>The Third Door</h3>
+    <ul><li>There’s always a creative “third door” to reach your goal, beyond the main entrance and the VIP line.</li></ul>
+
+    <h3>The 4-Hour Workweek</h3>
+    <ul>
+      <li>You need a burning alternative pursuit, not just “less work.”</li>
+      <li>Fear is universal and wears many disguises.</li>
+    </ul>
+
+    <h3>Mastery</h3>
+    <ul>
+      <li>Ten years of deliberate practice for true mastery.</li>
+      <li>Mentors dramatically accelerate growth.</li>
+    </ul>
+
+    <h3>Glucose Revolution</h3>
+    <ul><li>Food choices have immediate, measurable effects on energy and health.</li></ul>
+
+    <h3>The Mom Test</h3>
+    <ul><li>How to interview customers so they tell you the truth (not what they think you want to hear).</li></ul>
+
+    <h3>Why We Sleep</h3>
+    <ul><li>Consistency in sleep timing is the cornerstone of health and performance.</li></ul>
+
+    <h3>Reality Transurfing</h3>
+    <ul><li>A sweeping model of energy flows—gives a fresh perspective on reality.</li></ul>
+
+    <h3>Elon Musk <small>(Walter Isaacson)</small></h3>
+    <ul><li>Life is a strategy game with a handful of big, high-leverage moves—choose wisely.</li></ul>
+  </section>
+
+  <!-- REAL LIFE -->
+  <section class="card">
+    <h2><span class="emoji">🌱</span>Real Life</h2>
+    <ul>
+      <li><strong>“Ahrend”</strong> (mentor): the compounding power of networking.</li>
+      <li><strong>Dodo</strong>: happiness is sustainable.<br>
+          • In business, never quit—pausing is allowed.<br>
+          • “Choose the hard way” &amp; “Choose the smart way” → <em>Do both.</em></li>
+      <li><strong>Haha</strong>: pursue what you genuinely love doing.</li>
+    </ul>
+  </section>
+
+  <!-- INTERNET -->
+  <section class="card">
+    <h2><span class="emoji">🌐</span>Internet</h2>
+    <ul>
+      <li><strong>Podcast “Lotgenoten”</strong>: sparked the idea for <em>Simplegarden</em> and ignited my entrepreneurial spirit.</li>
+      <li><strong>Joe Hudson</strong>: self-understanding &gt; self-improvement; self-love matters.</li>
+      <li><strong>Pieter Zwart</strong> (Coolblue CEO): obsess over customer relationships.</li>
+      <li><strong>Ali Abdaal</strong>: practical productivity from videos &amp; podcasts.</li>
+      <li><strong>X.com</strong>: constant stream of insights on topics I care about.</li>
+    </ul>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="card">
+    <h2><span class="emoji">💼</span>Experience</h2>
+    <ul>
+      <li><strong>Simplegarden</strong> (current): 30+ customer interviews → learned to ask, listen, and uncover real needs.</li>
+      <li><strong>Camping “Marenland”</strong>: guest engagement, event prep, team-building, and seeing the business from the inside.</li>
+      <li><strong>Taste &amp; Flavor restaurant</strong>: discovered I love hospitality, but long-distance commuting drains me.</li>
+      <li><strong>GoGetters</strong> (sales): a poor work culture where colleagues demotivate each other is a clear “no.”</li>
+      <li><strong>RBZ Consultancy</strong> (Groningen): currently out of my league—something to grow into.</li>
+      <li><strong>The Market Hotel</strong> (Groningen, considered internship): realised it’s not the best route to my goals right now.</li>
+    </ul>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="big-card">
+    <h2><span class="emoji">✏️</span>Reflection / Notes</h2>
+    <p>(Use this space for overarching thoughts, future goals, or anything that doesn’t fit neatly above.)</p>
+  </section>
+
+</div><!-- /grid -->
+</body>
+</html>

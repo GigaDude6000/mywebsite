@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Goal Subsite</title>
+<style>
+  /* General layout */
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#38a169, #22543d);
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    text-align: center;
+  }
+
+  /* Soccer goal frame */
+  .goal {
+    position: relative;
+    width: 90vw;
+    max-width: 600px;
+    aspect-ratio: 3 / 2;
+    border: 8px solid #fff;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    background-image: repeating-linear-gradient(
+        0deg,
+        transparent 0 14px,
+        rgba(255, 255, 255, 0.3) 14px 16px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent 0 14px,
+        rgba(255, 255, 255, 0.3) 14px 16px
+      );
+  }
+
+  /* Intro text panel */
+  .goal p {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5;
+    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 12px;
+  }
+
+  /* Soccer ball */
+  .ball {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 4rem;
+    animation: bounce 1.6s infinite ease-in-out;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translate(-50%, 0);
+    }
+    50% {
+      transform: translate(-50%, -30px);
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="goal">
+    <p>
+      The goal of this site is to give people I get to meet knowledge about what I do.
+      You could see this site as an interactive CV. Moreover, with this site I can
+      show more things I do and more closed doors can be opened with new
+      opportunities.
+    </p>
+    <div class="ball">⚽</div>
+  </div>
+</body>
+</html>

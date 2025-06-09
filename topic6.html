@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Norman — About Me</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0e0e10;
+      --surface: #18181b;
+      --accent: #ffb703;
+      --text: #e8e8e8;
+      --text-muted: #a1a1aa;
+      --radius: 1.25rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    body::before {
+      /* Fun floating backdrop */
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 20% 25%, rgba(255, 183, 3, .08), transparent 40%),
+                  radial-gradient(circle at 82% 70%, rgba(3, 169, 252, .05), transparent 40%),
+                  radial-gradient(circle at 50% 10%, rgba(145,72,255,.05), transparent 40%);
+      pointer-events: none;
+      z-index: -1;
+      animation: float 18s alternate infinite;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-2rem); }
+    }
+
+    header {
+      padding: 4rem 1rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: clamp(2.5rem, 6vw + 1rem, 5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      background: linear-gradient(90deg, var(--accent) 0%, #ffffff 50%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 6s linear infinite;
+      position: relative;
+    }
+
+    /* Sparkle */
+    header h1::after {
+      content: "✨";
+      position: absolute;
+      top: -0.3em;
+      right: -0.6em;
+      font-size: 0.6em;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; transform: scale(0.8); }
+      50%  { opacity: 1; transform: scale(1.2) rotate(20deg); }
+    }
+
+    @keyframes shine {
+      to { background-position: 200% center; }
+    }
+
+    main {
+      max-width: 60ch;
+      padding: 0 1rem 4rem;
+      margin: 0 auto;
+    }
+
+    section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,.4);
+      transition: transform .4s ease, box-shadow .4s ease;
+    }
+
+    section:hover {
+      transform: translateY(-6px) rotate(0.3deg);
+      box-shadow: 0 6px 28px rgba(0,0,0,.55);
+    }
+
+    p + p {
+      margin-top: 1rem;
+    }
+
+    .remember {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-top: 1.5rem;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: .75rem 1.5rem;
+      background: var(--accent);
+      border: none;
+      border-radius: calc(var(--radius) / 2);
+      color: #000;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease;
+      animation: pulse 3.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,183,3,.4); }
+      70%  { transform: scale(1.05); box-shadow: 0 0 0 12px transparent; }
+      100% { transform: scale(1); }
+    }
+
+    .contact a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,.35);
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      pointer-events: none;
+      border-radius: 2px;
+      animation: fall 3s ease-out forwards;
+    }
+
+    @keyframes fall {
+      0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+      100% { opacity: 0; transform: translateY(200px) rotate(720deg); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Norman</h1>
+    <p style="margin-top:.5rem;color:var(--text-muted);">Founder & Builder at Simplegarden (for elderly people)</p>
+  </header>
+  <main>
+    <section>
+      <p><strong>Norman</strong> is the founder of <em>Simplegarden (for elderly people)</em>, a personal project with a mission: to create systems that ease the daily challenges of elderly people — starting small, aiming big. <em>Norret</em>, meanwhile, is his creative side project that may one day blossom into something even bigger.</p>
+
+      <p>With roots in both Dutch structure and Estonian depth, Norman blends discipline with introspection. His worldview is shaped by personal growth principles, especially those found in <cite>The 7 Habits of Highly Effective People</cite>, which continue to guide his decisions and direction.</p>
+
+      <p>Norman is energized by people who think differently — entrepreneurs, builders, and creatives who follow both their heart and their logic. While his journey is still unfolding, he’s constantly moving: training at the gym, expanding his network, testing ideas, and learning fast. He’s known for his sharp thinking, mindset-first approach, and the spark he brings to anything he commits to.</p>
+
+      <p>Currently, Norman is building out this site as a digital basecamp for his ideas and projects. Within two years, his goal is clear: be in a place where he’s learning deeply, earning actively, and saying “no” to everything that doesn’t align with his mission.</p>
+
+      <p class="remember">If there’s one thing to remember about Norman, it’s this:<br>
+      He’s here to connect.</p>
+
+      <p>Whether through ideas, collaboration, or shared values — he’s always open to conversations that move things forward.</p>
+    </section>
+
+    <div class="contact">
+      <p>Ready to build something meaningful together?</p>
+      <a href="mailto:cavil_consist_9r@icloud.com">Say hi 👋</a>
+    </div>
+  </main>
+
+  <script>
+    // Auto tilt
+    document.addEventListener('mousemove', e => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 10;
+      const y = (e.clientY / window.innerHeight - 0.5) * 10;
+      document.body.style.transform = `rotateX(${-y}deg) rotateY(${x}deg)`;
+    });
+
+    // Confetti burst on click
+    function confettiBurst(x, y) {
+      for (let i = 0; i < 32; i++) {
+        const confetti = document.createElement('span');
+        confetti.className = 'confetti';
+        confetti.style.left = x + 'px';
+        confetti.style.top = y + 'px';
+        confetti.style.background = `hsl(${Math.random() * 360}, 100%, 60%)`;
+        confetti.style.transform = `scale(${Math.random() * 0.7 + 0.3})`;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3100);
+      }
+    }
+
+    document.addEventListener('click', e => confettiBurst(e.clientX, e.clientY));
+  </script>
+</body>
+</html>

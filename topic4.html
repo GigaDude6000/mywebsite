@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simplegarden • A Reflection on Starting Small, Thinking Big</title>
+
+  <style>
+    /* ───── brand colours & basics ───── */
+    :root{
+      --accent:#43c045;            /* lively green */
+      --accent-light:#8ee38f;
+      --ink:#333;
+      --paper:#fdfdfd;
+      --card:#ffffff;
+    }
+    *,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+      line-height:1.6;
+      color:var(--ink);
+      background:radial-gradient(circle at 20% -20%, var(--accent-light) 0%, var(--paper) 55%);
+      min-height:100vh;
+      padding:2.2rem 1rem;
+    }
+
+    header,section,footer{
+      max-width:820px;
+      margin:0 auto 2.4rem;
+      background:var(--card);
+      padding:1.9rem 2rem;
+      border-radius:14px;
+      box-shadow:0 3px 8px rgba(0,0,0,.07);
+      transition:transform .3s ease;
+    }
+    /* tiny “pop” when hovering a card */
+    header:hover,section:hover,footer:hover{
+      transform:translateY(-4px);
+    }
+
+    h1,h2{line-height:1.25}
+    h1{font-size:1.9rem;margin-bottom:.7rem}
+    h2{font-size:1.35rem;margin:1.4rem 0 .3rem}
+
+    /* let headings jiggle a bit on hover */
+    @keyframes jiggle{
+      0%{transform:scale(1)}
+      50%{transform:scale(1.07) rotate(-1deg)}
+      100%{transform:scale(1)}
+    }
+    h1:hover,h2:hover{
+      animation:jiggle .6s ease-in-out;
+      cursor:default;
+    }
+
+    /* ───── progress bar ───── */
+    .progress-bar{
+      background:#e2e2e2;
+      border-radius:9px;
+      overflow:hidden;
+      height:22px;
+    }
+    .progress-bar__fill{
+      height:100%;
+      background:var(--accent);
+      width:5%;               /* stays at 5 % after animation */
+      animation:fill 2s ease-out forwards;
+    }
+    @keyframes fill{
+      from{width:0}
+      to{width:5%}
+    }
+    .progress-label{
+      margin-top:.55rem;
+      text-align:center;
+      font-size:.9rem;
+      letter-spacing:.4px;
+    }
+
+    /* small responsive tweaks */
+    @media(max-width:520px){
+      header,section,footer{padding:1.4rem 1.25rem}
+      h1{font-size:1.55rem}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Simplegarden: A Reflection on Starting Small, Thinking Big</h1>
+  </header>
+
+  <section>
+    <p>Simplegarden started as an experiment — a way to explore how to build a business that truly adds value. Maybe one day I’ll sell it, maybe not. But here’s the honest part: I feel like I’ve only made <strong>5&nbsp;%</strong> progress toward a vision that’s meant to be 100&nbsp;%.</p>
+
+    <h2>🌱 Why?</h2>
+    <p>Some of it comes from fear. Fear of going all-in. Fear of wasting valuable years on the wrong thing. I sometimes wonder: is working in the gardening space really the best path toward a meaningful, scalable business? My gut has doubts — especially when I think bigger. That’s why I’ve been considering doing a Business MBA, to learn how to build a smarter, more strategic version of Simplegarden. But that would mean moving to another city and pausing momentum. I’m not sure that’s the move either.</p>
+
+    <p>Another challenge is internal: growing up, certain negative patterns around fear and self-doubt shaped me. They still affect how I work today. Sometimes I don’t trust my time investments fully. But I’m working on breaking those patterns.</p>
+
+    <p>Despite all that, I’ve stepped out of my comfort zone. I interviewed 30 elderly people to understand their gardening struggles. I recorded videos. I explored how AI tools might help automate parts of the service. I learned that most elderly people face similar problems — but it’s not just about knowing those problems. It’s about building a smart system to solve them, not just gathering information.</p>
+
+    <h2>🍃 My Vision</h2>
+    <p>I want Simplegarden to feel like Coolblue — friendly, clear, helpful. I want people to love the experience. To crave it. Whether it’s a product or a service, it should feel effortless and warm. Eventually, I want to build something scalable — where smart people work together with synergy. Where systems and people make each other better.</p>
+
+    <h2>🌼 And success?</h2>
+    <p>Success is when the whole Netherlands thinks: “elderly gardening problem? Oh, that’s Simplegarden.” That immediate association. That trust.</p>
+
+    <p>I’m not there yet. But I’ve started. And that matters.</p>
+  </section>
+
+  <footer>
+    <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar__fill"></div>
+    </div>
+    <p class="progress-label">Progress&nbsp;&nbsp;5 / 100 %</p>
+  </footer>
+
+</body>
+</html>

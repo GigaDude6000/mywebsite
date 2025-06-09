@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fun School Scene – No Door</title>
+<style>
+:root{
+    --sky:#a3d5ff;
+    --grass:#7fd67f;
+    --wall:#fff7e0;
+    --roof:#ff6262;
+    --trunk:#8b4513;
+    --leaf:#4caf50;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(var(--sky) 0 65%, var(--grass) 65%);
+    font-family:"Segoe UI",Verdana,sans-serif;
+}
+
+.scene{
+    position:relative;
+    width:900px;
+    height:500px;
+    border:8px solid #2c8c59;
+    border-radius:18px;
+    overflow:hidden;
+    background:transparent url("data:image/svg+xml,\
+    <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill-opacity='.07'>\
+        <circle cx='20' cy='20' r='20' fill='white'/></svg>") repeat;
+}
+
+/* --- sun --- */
+.sun{
+    --size:110px;
+    position:absolute;
+    width:var(--size);
+    height:var(--size);
+    top:45px;
+    left:60px;
+    background:#ffd900;
+    border-radius:50%;
+    box-shadow:0 0 30px 10px rgba(255,217,0,.5);
+    animation:spin 25s linear infinite;
+}
+.sun::before{
+    content:"";
+    position:absolute;
+    inset:-12px;
+    background:conic-gradient(transparent 0 10deg, #ffd900 10deg 20deg);
+    border-radius:50%;
+    animation:spin 13s linear infinite reverse;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* --- cloud --- */
+.cloud{
+    position:absolute;
+    top:70px;
+    right:140px;
+    width:190px;
+    height:55px;
+    background:#fff;
+    border-radius:60px;
+    animation:drift 35s ease-in-out infinite;
+}
+.cloud::before,
+.cloud::after{
+    content:"";
+    position:absolute;
+    background:#fff;
+    border-radius:50%;
+}
+.cloud::before{
+    width:90px;
+    height:90px;
+    left:20px;
+    top:-45px;
+}
+.cloud::after{
+    width:70px;
+    height:70px;
+    left:100px;
+    top:-30px;
+}
+@keyframes drift{
+    0%{transform:translateX(0)}
+    50%{transform:translateX(-120px)}
+    100%{transform:translateX(0)}
+}
+
+/* --- flag --- */
+.flag-pole{
+    position:absolute;
+    left:430px;
+    top:90px;
+    width:6px;
+    height:120px;
+    background:#333;
+}
+.flag{
+    position:absolute;
+    left:436px;
+    top:92px;
+    width:90px;
+    height:40px;
+    background:#ff3b3b;
+    clip-path:polygon(0 0,100% 10%,100% 90%,0 100%);
+    animation:wave 2.2s ease-in-out infinite;
+}
+@keyframes wave{
+    0%,100%{transform:skewY(-2deg)}
+    50%{transform:skewY(5deg)}
+}
+
+/* --- school building (door removed) --- */
+.building{
+    position:absolute;
+    left:210px;
+    bottom:110px;
+    width:420px;
+    height:220px;
+    background:var(--wall);
+    border:4px solid #333;
+}
+.building::before{ /* roof */
+    content:"";
+    position:absolute;
+    left:50%;
+    top:-160px;
+    transform:translateX(-50%);
+    border-left:110px solid transparent;
+    border-right:110px solid transparent;
+    border-bottom:160px solid var(--roof);
+}
+/* sign */
+.sign{
+    position:absolute;
+    top:-38px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#000;
+    color:#fff;
+    font-weight:bold;
+    padding:5px 28px;
+    letter-spacing:.1em;
+    border:2px solid #fff;
+    text-shadow:1px 1px 2px #444;
+}
+/* message text */
+.message{
+    padding:20px 24px 14px;
+    font-size:.95rem;
+    line-height:1.45;
+}
+
+/* --- people --- */
+.people{
+    position:absolute;
+    right:40px;
+    bottom:80px;
+    display:flex;
+    gap:50px;
+}
+.person{
+    --h:78px;
+    position:relative;
+    width:12px;
+    height:var(--h);
+    animation:dance 1.3s ease-in-out infinite alternate;
+}
+.person:nth-child(2){animation-delay:.3s}
+.person:nth-child(3){animation-delay:.6s}
+@keyframes dance{
+    0%{transform:rotate(-5deg)}
+    100%{transform:rotate(7deg)}
+}
+.person::before{ /* head */
+    content:"";
+    position:absolute;
+    left:-12px;
+    top:-26px;
+    width:32px;
+    height:32px;
+    border:3px solid #000;
+    border-radius:50%;
+    background:#fff;
+}
+.body{
+    position:absolute;
+    left:0;
+    top:0;
+    width:0;
+    height:45px;
+    border-left:3px solid #000;
+}
+.arms{
+    position:absolute;
+    top:16px;
+    left:-20px;
+    width:42px;
+    height:0;
+    border-top:3px solid #000;
+}
+.legs{
+    position:absolute;
+    top:44px;
+    left:0;
+    width:34px;
+    height:0;
+    border-top:3px solid #000;
+    transform:rotate(25deg);
+}
+.legs::after{
+    content:"";
+    position:absolute;
+    left:-34px;
+    top:0;
+    width:34px;
+    height:0;
+    border-top:3px solid #000;
+    transform:rotate(-50deg);
+}
+
+/* --- tree --- */
+.tree{
+    position:absolute;
+    left:60px;
+    bottom:95px;
+}
+.trunk{
+    width:26px;
+    height:85px;
+    background:var(--trunk);
+    border:3px solid #000;
+}
+.crown{
+    position:absolute;
+    left:-40px;
+    top:-70px;
+    width:110px;
+    height:110px;
+    background:var(--leaf);
+    border-radius:50%;
+    border:3px solid #000;
+    box-shadow:0 0 0 6px rgba(0,0,0,.1);
+    animation:leaf-sway 3.5s ease-in-out infinite;
+}
+@keyframes leaf-sway{
+    0%,100%{transform:translateX(0)}
+    50%{transform:translateX(6px)}
+}
+
+/* --- LinkedIn button --- */
+.linkedin{
+    position:absolute;
+    left:20px;
+    bottom:18px;
+    background:#0a66c2;
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    padding:12px 22px;
+    border-radius:6px;
+    box-shadow:2px 4px 8px rgba(0,0,0,.25);
+    transition:transform .2s, background .2s;
+}
+.linkedin:hover{
+    background:#004182;
+    transform:translateY(-3px);
+}
+</style>
+</head>
+<body>
+  <div class="scene">
+
+      <!-- sun + cloud -->
+      <div class="sun"></div>
+      <div class="cloud"></div>
+
+      <!-- flag -->
+      <div class="flag-pole"></div>
+      <div class="flag"></div>
+
+      <!-- tree -->
+      <div class="tree">
+          <div class="trunk"></div>
+          <div class="crown"></div>
+      </div>
+
+      <!-- school (no door) -->
+      <div class="building">
+          <div class="sign">SCHOOL</div>
+
+          <div class="message">
+              With high school education you get the basic tools to get around. For example, reading,
+              substantiate opinions and presentation skills. Since I became a little bit more consciousness,
+              I realized school can't give everything to accomplish great things in life. So self-teaching
+              is very important.
+          </div>
+      </div>
+
+      <!-- people -->
+      <div class="people">
+          <div class="person">
+              <div class="body"></div><div class="arms"></div><div class="legs"></div>
+          </div>
+          <div class="person">
+              <div class="body"></div><div class="arms"></div><div class="legs"></div>
+          </div>
+          <div class="person">
+              <div class="body"></div><div class="arms"></div><div class="legs"></div>
+          </div>
+      </div>
+
+      <!-- LinkedIn -->
+      <a class="linkedin" href="https://www.linkedin.com/in/norman-v-b64b0128b" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</body>
+</html>
