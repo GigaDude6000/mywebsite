@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Norman Vogel – Fun Edition</title>
+  <style>
+    /* 🔸 Fade‑in animation */
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+    /* 🔸 Playful animated gradient background */
+    @keyframes gradient-shift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* 🔸 Node pop animation for clicks */
+    @keyframes pop {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      /* ✨ NEW: animated gradient background instead of flat gray */
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 60%, #fbc2eb 100%);
+      background-size: 400% 400%;
+      animation: fade-in 1s ease-out both, gradient-shift 25s linear infinite;
+    }
+
+    /* ---------------- Mind‑map layout ---------------- */
+    .mindmap { position: relative; width: 100%; height: 100%; }
+    .mindmap svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+    /* ---------------- Nodes ---------------- */
+    .node {
+      position: absolute;
+      padding: 12px 24px;
+      border: 2px solid #333;
+      border-radius: 8px;
+      background: #fff;
+      font: bold 16px/1.2 Arial, sans-serif;
+      color: #333;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+
+    /* ✨ NEW: playful glow + scale on hover */
+    .node:not(.center):hover {
+      transform: scale(1.08) rotate(-1deg);
+      box-shadow: 0 4px 14px rgba(255,0,150,0.25), 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    /* ✨ NEW: subtle pop when clicked */
+    .node:active { animation: pop 0.4s ease; }
+
+    /* ✨ NEW: sparkle emoji appears on hover */
+    .node::after {
+      content: "✨";
+      position: absolute;
+      top: -12px; right: -12px;
+      font-size: 18px;
+      opacity: 0;
+      transform: scale(0) rotate(0deg);
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      pointer-events: none;
+    }
+    .node:hover::after {
+      opacity: 1;
+      transform: scale(1) rotate(15deg);
+    }
+
+    /* ---------------- Generic pop‑up buttons ---------------- */
+    .action-button {
+      display: none;
+      position: absolute;
+      padding: 12px 26px;              /* comfortable target */
+      background: purple;              /* default colour (purple used for centre) */
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      box-sizing: border-box;
+      width: 100%;                     /* match node width */
+      transition: transform 0.2s ease;
+    }
+    /* ✨ NEW: a tiny pop for the buttons too */
+    .action-button:hover { transform: translateY(-2px) scale(1.03); }
+
+    /* ---------------- Centre node pop‑ups ---------------- */
+    .center-wrapper:hover .action-button { display: block; }
+    .action-button.about { bottom: 100%; left: 50%; transform: translateX(-50%); }
+    .action-button.why   { top:    100%; left: 50%; transform: translateX(-50%); }
+
+    /* ---------------- Education node pop‑ups (GREEN) ---------------- */
+    .action-button.edu-top,
+    .action-button.edu-bottom {
+      background: #28a745;            /* pleasant green */
+      width: 100%;
+    }
+    .topic3-wrapper:hover  .edu-top,
+    .topic3-wrapper:hover  .edu-bottom,
+    .edu-top:hover,
+    .edu-bottom:hover { display: block; }
+    .edu-top   { bottom: 100%; left: 50%; transform: translate(-50%, -12px); }
+    .edu-bottom{ top:    100%; left: 50%; transform: translate(-50%,  12px); }
+
+    /* ---------------- Positional wrappers ---------------- */
+    .center-wrapper, .topic3-wrapper { position: absolute; display: inline-block; }
+    .center-wrapper { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .center-wrapper .node.center { position: relative; }
+    .topic3-wrapper { top: 50%; left: 10%; transform: translateY(-50%); }
+    .topic3-wrapper .node { position: relative; }
+    .topic1-wrapper { position: absolute; top: 10%;  left: 50%; transform: translateX(-50%); }
+    .topic2-wrapper { position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%); }
+    .topic4-wrapper { position: absolute; top: 50%; right: 20%; transform: translateY(-50%); }
+    .topic5-wrapper { position: absolute; top: 15%; left: 15%; transform: translate(-50%, 0); }
+
+    /* ---------------- Special topic buttons ---------------- */
+    .yt-button, .sc-button, .sg-button {
+      display: none;
+      position: absolute;
+      top: -44px; left: 50%; transform: translateX(-50%);
+      padding: 10px 18px;
+      border-radius: 4px;
+      font-size: 14px;
+      text-decoration: none; color: #fff; cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .yt-button { background: #ff0000; }
+    .sc-button { background: #ff5500; }
+    .sg-button { background: #007BFF; }
+    .yt-button:hover, .sc-button:hover, .sg-button:hover { transform: translate(-50%, -4px) scale(1.05); }
+
+    .topic2-wrapper:hover .sc-button { display: block; }
+    .topic4-wrapper:hover .sg-button { display: block; }
+    .topic5-wrapper:hover .yt-button { display: block; }
+
+    /* ---------------- Icon bar ---------------- */
+    .icon-bar {
+      position: fixed;
+      bottom: 1rem; left: 1rem;
+      display: flex; gap: 0.5rem;
+    }
+    .icon-bar a {
+      opacity: 0;
+      animation: fade-in 0.5s ease-out forwards;
+      transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+    .icon-bar a:nth-child(1) { animation-delay: 1.3s; }
+    .icon-bar a:nth-child(2) { animation-delay: 1.6s; }
+    .icon-bar a:nth-child(3) { animation-delay: 1.9s; }
+
+    /* ✨ NEW: playful spin + grow on hover */
+    .icon-bar a:hover { transform: rotate(360deg) scale(1.2); }
+
+    .icon-bar img { width: 32px; height: 32px; display: block; }
+  </style>
+</head>
+
+<body>
+  <div class="mindmap">
+    <!-- ===== CONNECTING LINES ===== -->
+    <svg>
+      <line x1="50%" y1="50%" x2="50%" y2="10%" stroke="#333" stroke-width="4" />
+      <line x1="50%" y1="50%" x2="50%" y2="90%" stroke="#333" stroke-width="4" />
+      <line x1="50%" y1="50%" x2="10%" y2="50%" stroke="#333" stroke-width="4" />
+      <line x1="50%" y1="50%" x2="90%" y2="50%" stroke="#333" stroke-width="4" />
+      <line x1="50%" y1="50%" x2="15%" y2="15%" stroke="#333" stroke-width="4" />
+    </svg>
+
+    <!-- ===== CENTRE NODE ===== -->
+    <div class="center-wrapper">
+      <div class="node center">Norman Vogel</div>
+      <a href="topic6.html"  target="_blank" class="action-button about">About Me</a>
+      <a href="topic7.html"  target="_blank" class="action-button why">Why this site?</a>
+    </div>
+
+    <!-- ===== TOPIC 1 ===== -->
+    <div class="topic1-wrapper">
+      <a href="topic1.html" target="_blank" class="node">Blog</a>
+    </div>
+
+    <!-- ===== TOPIC 2 ===== -->
+    <div class="topic2-wrapper">
+      <a href="topic2.html" target="_blank" class="node">Music</a>
+      <a href="https://soundcloud.com/user-177275124" target="_blank" class="sc-button">Listen on SoundCloud</a>
+    </div>
+
+    <!-- ===== TOPIC 3 – EDUCATION ===== -->
+    <div class="topic3-wrapper">
+      <a href="topic3.html" target="_blank" class="node">Education</a>
+      <!-- Green pop‑ups aligned with Education -->
+      <a href="topic8.html" target="_blank" class="action-button edu-top">Self‑Taught</a>
+      <a href="topic9.html" target="_blank" class="action-button edu-bottom">Public School</a>
+    </div>
+
+    <!-- ===== TOPIC 4 ===== -->
+    <div class="topic4-wrapper">
+      <a href="topic4.html" target="_blank" class="node">Simplegarden</a>
+      <a href="https://simplegarden.nl" target="_blank" class="sg-button">Visit Simplegarden</a>
+    </div>
+
+    <!-- ===== TOPIC 5 ===== -->
+    <div class="topic5-wrapper">
+      <a href="topic5.html" target="_blank" class="node">Cinematic Videos</a>
+      <a href="https://www.youtube.com/watch?v=RsrZ0_vyHMg&list=PLwy0iQwxsXz31QxSD775D7l82310rA0e8" target="_blank" class="yt-button">Watch on YouTube</a>
+    </div>
+  </div>
+
+  <!-- ===== ICON BAR ===== -->
+  <div class="icon-bar">
+    <a href="mailto:cavil_consist_9r@icloud.com"><img src="https://cdn-icons-png.flaticon.com/512/5055/5055413.png" alt="Email"></a>
+    <a href="https://www.linkedin.com/in/norman-v-b64b0128b" target="_blank"><img src="https://static.vecteezy.com/system/resources/previews/018/930/480/non_2x/linkedin-logo-linkedin-icon-transparent-free-png.png" alt="LinkedIn"></a>
+    <a href="https://www.instagram.com/_norret_/" target="_blank"><img src="https://static.vecteezy.com/system/resources/previews/018/930/415/non_2x/instagram-logo-instagram-icon-transparent-free-png.png" alt="Instagram"></a>
+  </div>
+</body>
+</html>
