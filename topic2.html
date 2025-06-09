@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Norret – My Music Journey</title>
+  <style>
+    /* =========  Base layout  ========= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #0d0d0d 0%, #1a002d 100%);
+      animation: bgShift 25s ease-in-out infinite alternate;
+      color: #f3f3f3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 90px; /* space for bubbles */
+      overflow-x: hidden;
+    }
+
+    @keyframes bgShift {
+      from {
+        filter: hue-rotate(0deg) brightness(1);
+      }
+      to {
+        filter: hue-rotate(25deg) brightness(1.15);
+      }
+    }
+
+    /* =========  Bubble animation  ========= */
+    .bubbles {
+      display: flex;
+      gap: 16px;
+      position: fixed;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      align-items: center;
+      z-index: 10;
+    }
+
+    .bubble {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ff3366;
+      opacity: 0;
+      transform: scale(0.5);
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* bubble text */
+    .consistency {
+      font-size: 1rem;
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .consistency span {
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+      animation-delay: calc(var(--index) * 0.4s);
+      white-space: nowrap;
+    }
+
+    /* =========  Content  ========= */
+    main {
+      max-width: 900px;
+      line-height: 1.7;
+      font-size: 1.15rem;
+      padding: 0 1rem 4rem;
+    }
+
+    main h1 {
+      font-size: 2.6rem;
+      margin-bottom: 1rem;
+      color: #ff5c8a;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    main h1:hover {
+      transform: rotate(-2deg) scale(1.05);
+      cursor: default;
+    }
+
+    a {
+      color: #ff9dd0;
+      text-decoration: none;
+      position: relative;
+    }
+
+    a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease-out;
+    }
+
+    a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    a:hover {
+      filter: brightness(1.2);
+    }
+  </style>
+</head>
+<body>
+  <!-- =========  Bubble row  ========= -->
+  <div class="bubbles" id="bubbleRow"></div>
+
+  <!-- =========  Main copy  ========= -->
+  <main>
+    <h1>Why I Make Music</h1>
+    <p>
+      Music is something I like since being a child. I remember downloading some of
+      my favorite songs from YouTube to put on my iPod. My father and I built a
+      DIY DJ set where I could play and fade music with a mixing console. So as
+      a kid I loved <strong>MUSIC</strong>.
+    </p>
+
+    <p>
+      My favorite artists are <strong>DVRST</strong> and <strong>Avicii</strong>.
+      My own musical name is <strong>Norret</strong>.
+    </p>
+
+    <p>
+      Aristotle criticized certain types of music and instruments, such as the
+      flute, for being overly exciting and not contributing to the mind's
+      intellectual development. He argued that playing the flute "contributes
+      nothing to the mind" and that music aimed merely at giving pleasure to a
+      vulgar audience leads to the vulgarization of both performers and
+      listeners, effectively shutting off thoughtful engagement.
+    </p>
+
+    <p>
+      I love <abbr title="Intelligent Dance Music">IDM</abbr>, creating a deeper
+      layer in my music.
+    </p>
+
+    <p>
+      Listen to my work on
+      <a
+        href="https://soundcloud.com/user-177275124"
+        target="_blank"
+        rel="noopener"
+        >SoundCloud</a>
+      .
+    </p>
+  </main>
+
+  <!-- =========  Bubble generation script  ========= -->
+  <script>
+    const bubbleRow = document.getElementById("bubbleRow");
+    const bubbleCount = 15; // how many "days"
+
+    // Generate bubbles that appear every ~0.4 s
+    for (let i = 0; i < bubbleCount; i++) {
+      const dot = document.createElement("div");
+      dot.classList.add("bubble");
+      dot.style.animationDelay = i * 0.4 + "s";
+      bubbleRow.appendChild(dot);
+    }
+
+    // Add label after last bubble (delays chained to bubbleCount)
+    const label = document.createElement("div");
+    label.className = "consistency";
+
+    const word1 = document.createElement("span");
+    word1.textContent = "Consistency";
+    word1.style.setProperty("--index", bubbleCount);
+
+    const word2 = document.createElement("span");
+    word2.textContent = "(is key)";
+    word2.style.setProperty("--index", bubbleCount + 1);
+
+    label.appendChild(word1);
+    label.appendChild(word2);
+    bubbleRow.appendChild(label);
+  </script>
+</body>
+</html>
